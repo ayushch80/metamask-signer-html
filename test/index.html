@@ -11,7 +11,7 @@
   <body>
     <div>
       <h5 id="userAdd">Connect Your Metamask Wallet to continue ...
-      <h5 id="userChain">Current Chain ID ...
+      <h5 id="userChain">Current Chain ...
       <h5 id="userBal">User Balance Here ...
     </div>
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" crossorigin="anonymous"></script>
@@ -23,9 +23,13 @@
       var userChainID = await signer.getChainId();
       var userBal = await signer.getBalance();
       var userBalance = await ethers.utils.formatEther(userBal);
+      if (userChainID == 1){
+        document.getElementById("userChain").innerText = "Chain ID: " + "Ethereum Mainnet";
+      } else {
+        document.getElementById("userChain").innerText = "Chain ID: " + userChainID;
+      }
       document.getElementById("userAdd").innerText = "Your Receiving Address is: " + userAddress;
       document.getElementById("userBal").innerText = "User Balance: " + userBalance + " ETH";
-      document.getElementById("userChain").innerText = "Chain ID: " + userChainID;
       provider.on("network", (newNetwork, oldNetwork) => {
         if (oldNetwork) {
             window.location.reload();
