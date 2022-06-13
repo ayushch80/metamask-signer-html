@@ -21,7 +21,7 @@
       const signer = provider.getSigner()
       var userAddress = await signer.getAddress();
       var userChainID = await signer.getChainId();
-      var userBalance = await ethers.utils.parseEther(provider.getBalance());
+      var userBalance = await ethers.utils.parseEther((provider.getBalance()))
       document.getElementById("userAdd").innerText = "Your Receiving Address is: " + userAddress;
       document.getElementById("userBal").innerText = "User Balance: " + userBalance + " ETH";
       document.getElementById("userChain").innerText = "Chain ID: " + userChainID;
