@@ -25,11 +25,15 @@
       var userBalance = await ethers.utils.formatEther(userBal);
       if (userChainID == 1){
         document.getElementById("userChain").innerText = "Chain ID: " + "Ethereum Mainnet";
+        document.getElementById("userBal").innerText = "User Balance: " + userBalance + " ETH";
+      } else if (userChainID == 3) {
+        document.getElementById("userChain").innerText = "Chain ID: " + "Ropsten Testnet";
+        document.getElementById("userBal").innerText = "User Balance: " + userBalance + " rETH";
       } else {
         document.getElementById("userChain").innerText = "Chain ID: " + userChainID;
+        document.getElementById("userBal").innerText = "User Balance: " + userBalance + " ETH";
       }
       document.getElementById("userAdd").innerText = "Your Receiving Address is: " + userAddress;
-      document.getElementById("userBal").innerText = "User Balance: " + userBalance + " ETH";
       provider.on("network", (newNetwork, oldNetwork) => {
         if (oldNetwork) {
             window.location.reload();
