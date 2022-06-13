@@ -14,15 +14,14 @@
       <h5 id="userChain">Current Chain ID ...
       <h5 id="userBal">User Balance Here ...
     </div>
-        <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" crossorigin="anonymous"></script>
     <script type="module">
       const provider = new ethers.providers.Web3Provider(window.ethereum, "any")
       await provider.send("eth_requestAccounts", []);
       const signer = provider.getSigner()
       var userAddress = await signer.getAddress();
       var userChainID = await signer.getChainId();
-      var userBalance_raw = await signer.getBalance();
-      var userBalance = userBalance_raw / 1000000000000000000 ;
+      var userBalance = await ethers.utils.parseEther(signer.getBalance());
       document.getElementById("userAdd").innerText = "Your Receiving Address is: " + userAddress;
       document.getElementById("userBal").innerText = "User Balance: " + userBalance + " ETH";
       document.getElementById("userChain").innerText = "Chain ID: " + userChainID;
